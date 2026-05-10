@@ -37,5 +37,6 @@ function minusTicket() {
 }
 
 function buy() {
-	document.location.href = '/bought.html?ticketCount='+selectedTickets+'&boughtTime='+(Math.floor(Date.now()/1000));
+  const number = (Math.floor(Math.random() * 999) + 460) + '' + (Math.floor(Math.random() * 999) + 100);
+	document.location.href = '/bought.html?ticketCount='+selectedTickets+'&boughtTime='+(Math.floor(Date.now()/1000))+'&number='+number;
 }

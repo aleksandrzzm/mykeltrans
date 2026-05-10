@@ -1,7 +1,8 @@
 const params = new URLSearchParams(window.location.search);
 
-const ticketCount = Number(params.get('ticketCount'));
-const boughtTime = Number(params.get('boughtTime'));
+const ticketCount = Number(params.get('ticketCount') || 1);
+const boughtTime = Number(params.get('boughtTime') || Math.floor(Date.now()/1000));
+const ticketNumber = params.get('number') || '462486';
 
 const totalSeconds = (60 + 30) * 60;
 const warningTime = 60;
@@ -13,6 +14,12 @@ function updateTicketCountDisplay() {
 	document.getElementById('ticket-count-description').innerText = formatTickets(ticketCount);
 }
 
+function updateTicketId() {
+  document.getElementById('ticket-id').innerText = ticketNumber.substring(0, 3)+' '+ticketNumber.substring(3);
+}
+
+updateTicketId()
+
 function updateTicketDangerity() {
 	const leftMinutes = getLeftSeconds() / 60;
 
@@ -21,9 +28,9 @@ function updateTicketDangerity() {
 	} else if(leftMinutes < warningTime) {
 		document.getElementById('ticket-timer-wrapper').setAttribute('style', '--border-timer: #ECC8A0; --background-timer: linear-gradient(91deg, rgba(236, 200, 160, 0.50) 0%, rgba(236, 211, 160, 0.50) 100%); --ring-color: #D68117; --progress-color: #ECC8A0; --background-border-timer: linear-gradient(91deg, rgba(236, 200, 160, 1) 0%, rgba(236, 211, 160, 1) 100%);')
 	} else {
-		document.getElementById('ticket-timer-wrapper').setAttribute('style', '--border-timer: #ACDABD; --background-timer: linear-gradient(91deg, rgba(172, 218, 189, 0.50) 0%, rgba(170, 212, 248, 0.50) 100%); --ring-color: #17954D; --progress-color: #ACDABD; --background-border-timer: linear-gradient(91deg, rgba(172, 218, 189, 1) 0%, rgba(170, 212, 248, 1) 100%); --min-width: 240px;')		
+		document.getElementById('ticket-timer-wrapper').setAttribute('style', '--border-timer: #ACDABD; --background-timer: linear-gradient(91deg, rgba(172, 218, 189, 0.50) 0%, rgba(170, 212, 248, 0.50) 100%); --ring-color: #17954D; --progress-color: #ACDABD; --background-border-timer: linear-gradient(91deg, rgba(172, 218, 189, 1) 0%, rgba(170, 212, 248, 1) 100%); --min-width: 240px;')
 	}
-	
+
 }
 
 function updateDateDisplay() {
@@ -66,7 +73,7 @@ function getRelativeSeconds() {
 
 function updateTimerDiplay() {
 	document.getElementById('ticket-timer').innerText = (getRelativeHours() > 0 ? getRelativeHours()+':' : '')+(getRelativeMinutes() + '').padStart(2, '0')+':'+(getRelativeSeconds()+'').padStart(2, '0');
-	
+
 }
 	updateTimerDiplay();
 	updateTicketDangerity();
