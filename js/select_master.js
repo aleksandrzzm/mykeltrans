@@ -7,7 +7,7 @@
  	}
 
  	function updateDisplayCost() {
- 		document.getElementById('result-cost').innerText = getTotalCost()+''
+ 		document.getElementById('result-cost').innerText = selectedTickets === 67 ? 'сыкс сэвэн' : (getTotalCost()+'')
  	}
  	function updateTicketCount() {
  		document.getElementById('result-tickets').innerText = selectedTickets === 67 ? 'сыкс сэвэн' : (selectedTickets+'')
