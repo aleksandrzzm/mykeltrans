@@ -17,12 +17,7 @@
  		updateDisplayCost();
  		updateTicketCount();
 
- 		if (selectedTickets > 1) {
- 			document.getElementById('calculator-minus').disabled = false;
- 		} else {
- 			document.getElementById('calculator-minus').disabled = true;
-
- 		}
+ 		document.getElementById('calculator-minus').disabled = selectedTickets <= 1;
  	}
 
  	updateDisplay();
@@ -37,6 +32,6 @@ function minusTicket() {
 }
 
 function buy() {
-  const number = (Math.floor(Math.random() * 999) + 460) + '' + (Math.floor(Math.random() * 999) + 100);
+  const number = (Math.floor(Math.random() * 999) + 460).toString() + '' + (Math.floor(Math.random() * 999) + 100).toString();
 	document.location.href = '/bought.html?ticketCount='+selectedTickets+'&boughtTime='+(Math.floor(Date.now()/1000))+'&number='+number;
 }
