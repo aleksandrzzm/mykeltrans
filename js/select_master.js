@@ -10,7 +10,7 @@
  		document.getElementById('result-cost').innerText = getTotalCost()+''
  	}
  	function updateTicketCount() {
- 		document.getElementById('result-tickets').innerText = selectedTickets+''
+ 		document.getElementById('result-tickets').innerText = selectedTickets === 67 ? 'сыкс сэвэн' : (selectedTickets+'')
  	}
 
  	function updateDisplay() {
